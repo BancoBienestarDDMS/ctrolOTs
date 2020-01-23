@@ -31,7 +31,7 @@ var myLineChart = new Chart(ctx, {
 console.log("termina de cargar chartEstMesAct");
 
 var tt = new Date();
-document.getElementById("updatedDate1").innerHTML = "actualizado a las " + tt.toLocaleTimeString();
-document.getElementById("updatedDate2").innerHTML = "actualizado a las " + tt.toLocaleTimeString();
+document.getElementById("updatedDate1").innerHTML = "actualizado " + tt.toLocaleDateString() + " a las " + tt.toLocaleTimeString();
+document.getElementById("updatedDate2").innerHTML = "actualizado " + tt.toLocaleDateString() + " a las " + tt.toLocaleTimeString();
 console.log("termina de actualizar las fechas de actualización");
 console.log("listo");
