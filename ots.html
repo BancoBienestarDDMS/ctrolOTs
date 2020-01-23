@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Control OT's - Ordenes de Trabajo</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+  <style>
+    .table tbody tr.highlight td {
+      background-color: rgba(106, 181, 228, 0.5);
+    }
+  </style>
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand navbar-white bg-white static-top">
+
+    <img src="imgs/logo_1.jpg" style="margin-left: 0px; margin-left: 0px; margin-top: 0px; height: 100px; padding: 0px;"/>
+    <h1 style="margin-left: 50px; margin-right: 50px;">Control del Ordenes de Trabajo</h1>
+
+    <button class="btn btn-link btn-lg text-dark order-1 order-sm-0" id="sidebarToggle" href="#">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navbar -->
+    <ul class="navbar-nav ml-auto ml-lg-0">
+      <li class="nav-item dropdown no-arrow mx-1">
+        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bell fa-fw"></i>
+          <span class="badge badge-danger" style="margin-left: -7px;">9+</span>
+        </a>
+        <div   class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+          <a   class="dropdown-item" href="#">Action</a>
+          <a   class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a   class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown no-arrow">
+        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle fa-fw"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Cerrar Sesión</a>
+        </div>
+      </li>
+    </ul>
+
+  </nav>
+
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav" style="background-color: #285C4D;">
+      <li class="nav-item">
+        <a class="nav-link" href="inicio.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Inicio</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="tablero.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Tablero</span>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="ots.html" >
+          <i class="fas fa-fw fa-tasks"></i>
+          <span>OT's</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Estadísticas</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Catálogos</span></a>
+      </li>
+    </ul> 
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+        <!-- Filtros -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-filter"></i>
+            Filtros
+          </div>
+          <div class="card-body">
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Asignación: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
+              <option>Todo</option>
+              <option>Appwhere</option>
+              <option>GERENCIA DE INFORMACION</option>
+              <option>INFOTEC</option>
+              <option>Soporte UANL</option>
+            </select>
+
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Status">Estatus: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Status" onchange="slc_Filtro_Status_chg(this)">
+              <option>Todo</option>
+              <option>Canceladas</option>
+              <option>Con Usuario</option>
+              <option>En QA</option>
+              <option>En Proceso</option>
+              <option>Atendidas</option>
+            </select>
+            
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">En tiempo: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
+              <option>Todo</option>
+              <option>En Tiempo</option>
+              <option>Fuera de Tiempo</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Botones 
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-plus-circle"></i>
+            Botones
+          </div>
+          <div class="card-body">
+            
+          </div>
+        </div>
+        -->
+
+        <!-- DataTables OT"s -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Ordenes de Trabajo
+          </div>
+          <div class="card-body">
+            <button type="button" class="btn btn-sm btn-info" onclick="btn_newOT_clic(this)"  style="margin-top: -10px; margin-bottom: 10px;">Nueva OT</button>
+            <button type="button" class="btn btn-sm btn-info" onclick="btn_editOT_clic(this)" style="margin-top: -10px; margin-bottom: 10px;">Editar OT</button>
+            <button type="button" class="btn btn-sm btn-info" onclick="btn_attDoc_clic(this)" style="margin-top: -10px; margin-bottom: 10px;">Adjuntar Documentos</button>
+            <div class="table-responsive">
+              <table class="table table-bordered display" id="dt_OTs" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>No. OT</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Descripción</th>
+                    <th>Area Solicitante</th>
+                    <th>Solicitante</th>
+                    <th>Asignada a</th>
+                    <th>Fecha Envío</th>
+                    <th>Estatus</th>
+                    <th>Urgencia</th>
+                    <th>Complejidad</th>
+                    <th>Tiempo Atención</th>
+                    <th>Fecha Est. Atn.</th>
+                    <th>Fecha Entrega</th>
+                    <th>En tiempo</th>
+                    <th>Observaciones</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>No. OT</th>
+                    <th>Fecha Solicitud</th>
+                    <th>Descripción</th>
+                    <th>Area Solicitante</th>
+                    <th>Solicitante</th>
+                    <th>Asignada a</th>
+                    <th>Fecha Envío</th>
+                    <th>Estatus</th>
+                    <th>Urgencia</th>
+                    <th>Complejidad</th>
+                    <th>Tiempo Atención</th>
+                    <th>Fecha Est. Atn.</th>
+                    <th>Fecha Entrega</th>
+                    <th>En tiempo</th>
+                    <th>Observaciones</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0003-19</td>
+                    <td>01/02/2019</td>
+                    <td>Devoluciones de cuota de administración 594 Acuerdos con un importe de $ 29,922. 16</td>
+                    <td>Operación Tradicional</td>
+                    <td>Marco Antonio Hernandez Molina</td>
+                    <td>Soporte UANL</td>
+                    <td>01/02/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Baja</td>
+                    <td>8</td>
+                    <td>01/02/2019 22:31</td>
+                    <td>01/02/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0004-19</td>
+                    <td>01/02/2019</td>
+                    <td>DISPERSIÓN FONDEN CDMX 2018-12-28</td>
+                    <td>Banca Social</td>
+                    <td>Jorge Alberto Cabello Aguilar</td>
+                    <td>Soporte UANL</td>
+                    <td>01/02/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>12</td>
+                    <td>01/03/2019 00:00</td>
+                    <td>01/02/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0008-19</td>
+                    <td>01/03/2019</td>
+                    <td>Dispersión TDD Noviembre Diciembre 2018</td>
+                    <td>Banca Social</td>
+                    <td>Ismael Luna López</td>
+                    <td>Soporte UANL</td>
+                    <td>01/03/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>12</td>
+                    <td>01/04/2019 03:27</td>
+                    <td>01/03/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0009-19</td>
+                    <td>01/03/2019</td>
+                    <td>Dispersión TDD Noviembre Diciembre 2018 Complemento</td>
+                    <td>Banca Social</td>
+                    <td>Ismael Luna López</td>
+                    <td>Soporte UANL</td>
+                    <td>01/03/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>12</td>
+                    <td>01/04/2019 03:28</td>
+                    <td>01/03/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0016-19</td>
+                    <td>01/04/2019</td>
+                    <td>Información de procesos ejecutados en VARIAS TABLAS del mes de noviembre de 2018</td>
+                    <td>Subdirección de Mantenimiento de Software</td>
+                    <td>Ricardo Espinosa Ramos</td>
+                    <td>Soporte UANL</td>
+                    <td>01/04/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Alta</td>
+                    <td>18</td>
+                    <td>01/05/2019 12:23</td>
+                    <td>01/07/2019</td>
+                    <td>FUERA DE TIEMPO</td>
+                    <td>horas hábiles</td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0017-19</td>
+                    <td>01/04/2019</td>
+                    <td>Devoluciones de cuota de administración 356 Acuerdos con un importe de $ 17,776. 73</td>
+                    <td>Operación Tradicional</td>
+                    <td>Marco Antonio Hernandez Molina</td>
+                    <td>Soporte UANL</td>
+                    <td>01/04/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Baja</td>
+                    <td>8</td>
+                    <td>01/04/2019 23:09</td>
+                    <td>01/04/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0018-19</td>
+                    <td>01/04/2019</td>
+                    <td>DISPERSIÓN GOBIERNO DEL ESTADO DE MÉXICO 2019-01-03</td>
+                    <td>Banca Social</td>
+                    <td>Jorge Alberto Cabello Aguilar</td>
+                    <td>Soporte UANL</td>
+                    <td>01/07/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Media</td>
+                    <td>18</td>
+                    <td>01/08/2019 00:00</td>
+                    <td>01/07/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0019-19</td>
+                    <td>01/07/2019</td>
+                    <td>Lista cuentas asociadas a un RFC</td>
+                    <td>Banca Social</td>
+                    <td>Ma. De los Angeles Pérez Fraga</td>
+                    <td>GERENCIA DE INFORMACION</td>
+                    <td>01/04/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>12</td>
+                    <td>01/05/2019 02:18</td>
+                    <td>01/08/2019</td>
+                    <td>FUERA DE TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0020-19</td>
+                    <td>01/07/2019</td>
+                    <td>Ampliación de Linea de Caputura Emisor EQUIPA-T de 12 a 16 digitos</td>
+                    <td>Negocios y Corresponsales</td>
+                    <td>Annylu Segura Hernández</td>
+                    <td>GERENCIA DE INFORMACION</td>
+                    <td>01/11/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Alta</td>
+                    <td>18</td>
+                    <td>01/12/2019 09:25</td>
+                    <td>01/28/2019</td>
+                    <td>FUERA DE TIEMPO</td>
+                    <td>Se atendió por GI el día 17/01/2019, Se pasa al área de QA para las pruebas respectivas, el usuario informa el 28/01/2019 que ya quedo atendida.</td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0026-19</td>
+                    <td>01/08/2019</td>
+                    <td>Dos cambios de centro de la suc 908 a la 9915</td>
+                    <td>Gerente de Banca Electrónica y Tarjetas</td>
+                    <td>Lucila Viridiana Vázquez Velasco</td>
+                    <td>Soporte UANL</td>
+                    <td>01/09/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>12</td>
+                    <td>01/10/2019 00:41</td>
+                    <td>01/09/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0028-19</td>
+                    <td>01/08/2019</td>
+                    <td>Se solicita se informe del motivo del bloqueo de la cuenta 232033829 a nombre de Emma Ramírez Cumplido y el usuario que lo realizo.</td>
+                    <td>Direccion de Sucursales</td>
+                    <td>Carlos Torres Jiménez</td>
+                    <td>Soporte UANL</td>
+                    <td>01/09/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Alta</td>
+                    <td>18</td>
+                    <td>01/10/2019 06:29</td>
+                    <td>01/09/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0035-19</td>
+                    <td>01/10/2019</td>
+                    <td>Devoluciones de cuota de administración 576 Acuerdos con un importe de $ 22,653. 73</td>
+                    <td>Operación Tradicional</td>
+                    <td>Marco Antonio Hernandez Molina</td>
+                    <td>Soporte UANL</td>
+                    <td>01/10/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Baja</td>
+                    <td>8</td>
+                    <td>01/11/2019 03:16</td>
+                    <td>01/11/2019</td>
+                    <td>FUERA DE TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0036-19</td>
+                    <td>01/10/2019</td>
+                    <td>Reasignación de 50 Tj  de las Sucursales 104, 132, 168,  181  a la Sucursal 908</td>
+                    <td>Banca Social</td>
+                    <td>Danae Aguirre Mayorga</td>
+                    <td>Soporte UANL</td>
+                    <td>01/14/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Alta</td>
+                    <td>18</td>
+                    <td>01/15/2019 12:50</td>
+                    <td>01/14/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0037-19</td>
+                    <td>01/11/2019</td>
+                    <td>Identificar y corregir la parametría contable del pago en los créditos revolventes</td>
+                    <td>Subdirector de Control de la Operación</td>
+                    <td>Ruben Bernal Cruz</td>
+                    <td>Appwhere</td>
+                    <td>01/17/2019</td>
+                    <td>EN PROCESO</td>
+                    <td>Muy Alta</td>
+                    <td>Muy Alta</td>
+                    <td>A determinar</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0042-19</td>
+                    <td>01/11/2019</td>
+                    <td>Extracción de cálculo de interés de la cartera comercial periodo del 01 nov al 31 de diciembre 2018</td>
+                    <td>Operación Tradicional</td>
+                    <td>César López Muñoz</td>
+                    <td>Soporte UANL</td>
+                    <td>01/16/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>12</td>
+                    <td>01/17/2019 06:53</td>
+                    <td>01/17/2019</td>
+                    <td>FUERA DE TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0044-19</td>
+                    <td>01/11/2019</td>
+                    <td>Cambio de estatus de 29 tarjetas en la plataforma TCB</td>
+                    <td>Banca Social</td>
+                    <td>Danae Aguirre Mayorga</td>
+                    <td>Soporte UANL</td>
+                    <td>01/14/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Alta</td>
+                    <td>Baja</td>
+                    <td>12</td>
+                    <td>01/15/2019 06:53</td>
+                    <td>01/14/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0048-19</td>
+                    <td>01/14/2019</td>
+                    <td>Baja de retención en cuentas eje cartera de consumo Refin, con la finalidad de que Apliquen los pagos o baja del programa de "Quitas"</td>
+                    <td>Cartera de Crédito</td>
+                    <td>Yenessi Hernández Quiroga</td>
+                    <td>Soporte UANL</td>
+                    <td>01/15/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Media</td>
+                    <td>Baja</td>
+                    <td>18</td>
+                    <td>01/16/2019 04:13</td>
+                    <td>01/16/2019</td>
+                    <td>FUERA DE TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0051-19</td>
+                    <td>01/15/2019</td>
+                    <td>Devoluciones de cuota de administración 468 Acuerdos con un importe de $ 24,394. 84</td>
+                    <td>Operación Tradicional</td>
+                    <td>Marco Antonio Hernandez Molina</td>
+                    <td>Soporte UANL</td>
+                    <td>01/16/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Baja</td>
+                    <td>08</td>
+                    <td>01/16/2019 19:05</td>
+                    <td>01/16/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0053-19</td>
+                    <td>01/15/2019</td>
+                    <td>Requerimiento adicional de extracción de información TCB</td>
+                    <td>Operación Tradicional</td>
+                    <td>Miguel Ángel Gómez Recillas</td>
+                    <td>Soporte UANL</td>
+                    <td>01/16/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Muy Alta</td>
+                    <td>Alta</td>
+                    <td>18</td>
+                    <td>01/17/2019 05:11</td>
+                    <td>01/16/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0056-19</td>
+                    <td>01/16/2019</td>
+                    <td>Cambio de fecha de contratos comercial ya que las fechas de vencimiento en sistema no corresponden a las fechas de vencimiento del contrato</td>
+                    <td>Subdirector de Control de la Operación</td>
+                    <td>Yenessi Hernández Quiroga</td>
+                    <td>Soporte UANL</td>
+                    <td>01/18/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Media</td>
+                    <td>Baja</td>
+                    <td>18</td>
+                    <td>01/19/2019 05:06</td>
+                    <td>01/18/2019</td>
+                    <td>EN TIEMPO</td>
+                    <td></td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <td id="ot">SMS-0058-19</td>
+                    <td>01/16/2019</td>
+                    <td>Solicitud de número de retención</td>
+                    <td>Operación Tradicional</td>
+                    <td>Ruben Bernal Cruz</td>
+                    <td>Soporte UANL</td>
+                    <td>01/16/2019</td>
+                    <td>ATENDIDA</td>
+                    <td>Media</td>
+                    <td>Baja</td>
+                    <td>18</td>
+                    <td>01/17/2019 15:12</td>
+                    <td>01/17/2019</td>
+                    <td>EN TIEMPO	</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted" id="updatedDate_OTs">Actualizado a las 12:29 p.m.</div>
+        </div>
+
+      </div>
+      <!-- /.container-fluid -->
+
+      <!-- Sticky Footer -->
+      <footer class="sticky-footer">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>©  Banco del Bienesatar 2019</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesión?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Seguro que desea cerrar sesión?.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-primary" href="login.html">Salir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal New OT -->
+  <div   class="modal fade" id="newOT" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content new OT -->
+      <div              class="modal-content">
+        <div            class="modal-header">
+          <h4           class="modal-title" id="txt_tit_newOT_modal">Nueva OT</h4>
+          <button       class="close" data-dismiss="modal" type="button">&times;</button>
+        </div>
+        <div            class="modal-body">
+          <form         class="form-horizontal">
+
+            <div        class="form-inline form-group">
+              <label    class="control-label" style="width: 130px; text-align: right;" for="txt_newOT_numOT">Num. OT:</label>
+              <input    class="form-control form-control-sm ml-3" id="txt_newOT_numOT" style="width: 200px;" type="text">
+            </div>
+            <div        class="form-inline form-group">
+              <label    class="control-label" style="width: 130px; text-align: right;" for="txt_newOT_fecSol">Fecha Solicitud:</label>
+              <input    class="form-control form-control-sm ml-3" id="txt_newOT_fecSol" style="width: 200px;" type="text" disabled="true">
+            </div>
+            <div        class="form-inline form-group"> 
+              <label    class="control-label" style="width: 130px; text-align: right;" for="txt_newOT_Desc">Descripción:</label>
+              <textarea class="form-control form-control-sm ml-3" rows="3" id="txt_newOT_Desc" style="width: 200px;"></textarea>
+            </div>
+            <div        class="form-inline form-group">
+              <label    class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Area_Solicitante">Área Solicitante:</label>
+              <select   class="form-control form-control-sm ml-3" id="slc_newOT_Area_Solicitante" style="width: 200px;" onchange="slc_newOT_Area_Solicitante_chg(this)">
+                <option>--Seleccione--</option>
+                <!-- 
+                <option>D.G.A.1</option>
+                <option>D.G.A.2</option>
+                <option>D.G.A.3</option>
+                <option>D.G.A.4</option>
+                <option>D.G.A.5</option>
+                -->
+                <option>Banca Social</option>
+                <option>Cartera de Crédito</option>
+                <option>Dirección de Sucursales</option>
+                <option>Gerente de Banca Electrónica y Tarjetas</option>
+                <option>Negocios y Corresponsales</option>
+                <option>Operación Tradicional</option>
+                <option>Subdirección de Mantenimiento de Software</option>
+                <option>Subdirector de Control de la Operación</option>
+              </select>
+            </div>
+            <div      class="form-inline form-group">
+              <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Solicitante">Solicitante:</label>
+              <select class="form-control form-control-sm ml-3" id="slc_newOT_Solicitante" style="width: 200px;">
+                <option>--Seleccione--</option>
+                <option>Annylu Segura Hernández</option>
+                <option>Carlos Torres Jiménez</option>
+                <option>César López Muñoz</option>
+                <option>Danae Aguirre Mayorga</option>
+                <option>Ismael Luna López</option>
+                <option>Jorge Alberto Cabello Aguilar</option>
+                <option>Lucila Viridiana Vázquez Velasco</option>
+                <option>Ma. De los Angeles Pérez Fraga</option>
+                <option>Marco Antonio Hernandez Molina</option>
+                <option>Miguel Ángel Gómez Recillas</option>
+                <option>Ricardo Espinosa ramos</option>
+                <option>Ruben Bernal Cruz</option>
+                <option>Yenessi Hernández Quiroga</option>
+              </select>
+            </div>
+            <div      class="form-inline form-group">
+              <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_AsignadoA">Asignado a:</label>
+              <select class="form-control form-control-sm ml-3" id="slc_newOT_AsignadoA" style="width: 200px;">
+                <option>--Seleccione--</option>
+                <option>Appwhere</option>
+                <option>GERENCIA DE INFORMACION</option>
+                <option>INFOTEC</option>
+                <option>Soporte UANL</option>
+              </select>
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label" style="width: 130px; text-align: right;" for="txt_newOT_fecEnv">Fecha Envío:</label>
+              <input class="form-control form-control-sm ml-3" id="txt_newOT_fecEnv" style="width: 200px;" type="date">
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label" style="width: 130px; text-align: right;" for="txt_newOT_horEnv">Hora Envío:</label>
+              <input class="form-control form-control-sm ml-3" id="txt_newOT_horEnv" style="width: 200px;" type="time" min="09:00" max="19:00">
+            </div>
+            <div      class="form-inline form-group">
+              <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Estatus">Estatus:</label>
+              <select class="form-control form-control-sm ml-3" id="slc_newOT_Estatus" style="width: 200px;" onchange="slc_newOT_Status_chg(this)">
+                <option>--Seleccione--</option>
+                <option>CANCELADAS</option>
+                <option>CON USUARIO</option>
+                <option>EN QA</option>
+                <option>EN PROCESO</option>
+                <option>ATENDIDA</option>
+              </select>
+            </div>
+            <div        class="form-inline form-group" id="div_newOT_Observ_Cancel" style="display: none;">
+              <label    class="control-label" style="width: 130px; text-align: right;" for="txt_newOT_Observ_Cancel">Observación Cancelación</label>
+              <textarea class="form-control form-control-sm ml-3" rows="3" id="txt_newOT_Observ_Cancel" style="width: 200px;"></textarea>
+            </div>
+            <div        class="form-inline form-group" id="div_newOT_Observ_Atn" style="display: none;">
+              <label    class="control-label" style="width: 130px; text-align: right;" for="txt_newOT_Observ_Atn">Observación Atención</label>
+              <textarea class="form-control form-control-sm ml-3" rows="3" id="txt_newOT_Observ_Atn" style="width: 200px;"></textarea>
+            </div>
+            <div      class="form-inline form-group">
+              <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Urgencia">Urgencia:</label>
+              <select class="form-control form-control-sm ml-3" id="slc_newOT_Urgencia" style="width: 200px;" onchange="slc_newOT_Urgencia_chg(this)">
+                <option>--Seleccione--</option>
+                <option>Muy Alta</option>
+                <option>Alta</option>
+                <option>Media</option>
+                <option>Baja</option>
+              </select>
+            </div>
+            <div      class="form-inline form-group">
+              <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Complejidad">Complejidad:</label>
+              <select class="form-control form-control-sm ml-3" id="slc_newOT_Complejidad" style="width: 200px;" onchange="slc_newOT_Complejidad_chg(this)">
+                <option>--Seleccione--</option>
+                <option>Muy Alta</option>
+                <option>Alta</option>
+                <option>Media</option>
+                <option>Baja</option>
+              </select>
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label"                     style="width: 130px; text-align: right;"    for="txt_newOT_TiempoAtn">Tiempo Atención:</label>
+              <input class="form-control form-control-sm ml-3" style="width: 200px;"                        id="txt_newOT_TiempoAtn"  type="text" disabled="true">
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label"                     style="width: 130px; text-align: right;"    for="txt_newOT_fecAtn">Fecha Atención:</label>
+              <input class="form-control form-control-sm ml-3" style="width: 200px;"                        id="txt_newOT_fecAtn"     type="text" placeholder="dd/mm/aaaa" disabled="true">
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label"                     style="width: 130px; text-align: right;"    for="txt_newOT_hrAtn">Hora Atención:</label>
+              <input class="form-control form-control-sm ml-3" style="width: 200px;"                        id="txt_newOT_hrAtn"      type="text" placeholder="hh:mm" disabled="true">
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label"                     style="width: 130px; text-align: right;"    for="txt_newOT_fecEntrega">Fecha Entrega:</label>
+              <input class="form-control form-control-sm ml-3" style="width: 200px;"                        id="txt_newOT_fecEntrega" type="date">
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label"                     style="width: 130px; text-align: right;"    for="txt_newOT_hrEntrega">Hora Entrega:</label>
+              <input class="form-control form-control-sm ml-3" style="width: 200px;"                        id="txt_newOT_hrEntrega"  type="time">
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label"                     style="width: 130px; text-align: right;"    for="txt_newOT_EnTiempo">En Tiempo:</label>
+              <input class="form-control form-control-sm ml-3" style="width: 200px;"                        id="txt_newOT_EnTiempo"   type="text" disabled="true">
+            </div>
+            <div     class="form-inline form-group">
+              <label class="control-label"                     style="width: 130px; text-align: right;"    for="txt_newOT_diasAtn">Días de Atn:</label>
+              <input class="form-control form-control-sm ml-3" style="width: 200px;"                        id="txt_newOT_diasAtn"    type="text" disabled="true">
+            </div>
+            <div        class="form-inline form-group">
+              <label    class="control-label"                     style="width: 130px; text-align: right;" for="txt_newOT_Observ">Observaciones</label>
+              <textarea class="form-control form-control-sm ml-3" style="width: 200px;"                     id="txt_newOT_Observ"  rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger"  data-dismiss="modal" type="button" onclick="btn_Cancelar_clic(this)">Cancelar</button>
+          <button class="btn btn-success" data-dismiss="modal" type="button" onclick="btn_Guardar_clic(this)" >Guardar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Modal attach document -->
+  <div class="modal fade" id="attachDoc" role="dialog">
+    <div class="modal-dialog modal-xl">
+    
+      <!-- Modal content attach document -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Agregar Documentos a la OT</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal"> <!-- action="/action_page.php" -->
+            <div class="form-group form-inline" style="margin-left: 30px;">
+              <label class="control-label" for="txt_attachDoc_NumOT">Num. OT:</label>
+              <input type="text" class="form-control" style="margin-left: 30px;" id="txt_attachDoc_NumOT" disabled="true">
+            </div>
+            <div class="form-group">
+              <label class="control-label" style="margin-left: 30px;" for="dt_attachDoc_Docs">Documentos:</label>
+                <div class="table-responsive" style="margin-left: 30px; width: 1050px;">
+                  <table class="table table-bordered display" id="dt_attachDoc_Docs" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Fecha Carga</th>
+                        <th>Descripción</th>
+                        <th>Liga</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>SMS-0003-19_D_01</td>
+                        <td>OT</td>
+                        <td>01/02/2019</td>
+                        <td>Orden de trabajo firmada.</td>
+                        <td><a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf" target="_blank">SMS-0003-19_D_01.pdf</a></td>
+                      </tr>
+                      <tr>
+                        <td>SMS-0003-19_D_02</td>
+                        <td>UAT</td>
+                        <td>01/03/2019</td>
+                        <td>Orden de atención firmada.</td>
+                        <td><a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf" target="_blank">SMS-0003-19_D_02.pdf</a></td>
+                      </tr>
+                      <tr>
+                        <td>SMS-0003-19_D_03</td>
+                        <td>Evidencia</td>
+                        <td>01/03/2019</td>
+                        <td>Evidencia de servicio</td>
+                        <td><a href="https://si.ua.es/es/documentos/documentacion/pdf-s/mozilla12-pdf.pdf" target="_blank">SMS-0003-19_D_03.pdf</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <div class="form-group form-inline" style="margin-left: 30px;">
+              <label class="control-label" for="txt_attachDoc_Nom">Nombre:</label>
+              <input type="text" class="form-control" style="margin-left: 37px; width: 350px;" id="txt_attachDoc_Nom" placeholder="Nombre">
+            </div>
+            <div class="form-group form-inline">
+              <label class="control-label" for="txt_attachDoc_Desc" style="margin-left: 30px;">Descripción:</label>
+              <input type="text" class="form-control" style="margin-left: 10px; width: 350px;" id="txt_attachDoc_Desc" placeholder="Descripción">
+            </div>
+            <div class="form-group form-inline"> 
+              <label class="control-label" style="margin-left: 30px;" for="upl_attachDoc_Doc">Archivo:</label>
+              <div class="col-sm-offset-2" style="width: 430px; margin-left: 40px;">
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="upl_attachDoc_Doc" aria-describedby="inputGroupFileAddon01" lang="es">
+                    <label class="custom-file-label" for="upl_attachDoc_Doc" style="text-align: left;">Selecciona Archivo</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger"  data-dismiss="modal" id="btn_attachDoc_Cancel">Cancelar</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" id="btn_attachDoc_Add"   >Agregar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugin JavaScript-->
+  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="vendor/datatables/jquery.dataTables.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin.min.js"></script>
+  <script src="js/demo/canvasjs.min.js"></script>
+
+  <!-- Demo scripts for this page-->
+  <script src="js/tabla_ots.js"></script>
+  
+  <script>
+    var cargandoOTParaEdicion = false;
+    var ot_sct     = '';
+    var f_sol_sct  = '';
+    var desc_sct   = '';
+    var a_sol_sct  = '';
+    var sol_sct    = '';
+    var asig_sct   = '';
+    var f_env_sct  = '';
+    var stats_sct  = '';
+    var urg_sct    = '';
+    var comp_sct   = '';
+    var t_atn_sct  = '';
+    var f_atn_sct  = '';
+    var f_ent_sct  = '';
+    var n_time_sct = '';
+    var observ_sct = '';
+
+    function validarEnTiempo() {
+      console.log(" ");
+      console.log(" ");
+      console.log(" ");
+      console.log(" ");
+      console.log(" ");
+      console.log("Valida En Tiempo");
+      var dd     = $('#txt_newOT_fecAtn').val();
+      var aa_a   = dd.substring(6,10);
+      var mm_a   = parseInt(dd.substring(3,5))-1;
+      var dd_a   = dd.substring(0,2);
+      var tt_a   = $('#txt_newOT_hrAtn').val();
+      var hh_a   = parseInt(tt_a.split(":")[0]);
+      var mi_a   = parseInt(tt_a.split(":")[1]);
+      var date_a = new Date(aa_a,mm_a,dd_a,hh_a,mi_a,0);
+      console.log("dd:     " + dd);
+      console.log("aa_a:   " + aa_a);
+      console.log("mm_a:   " + mm_a);
+      console.log("dd_a:   " + dd_a);
+      console.log("hh_a:   " + hh_a);
+      console.log("mi_a:   " + mi_a);
+      console.log("date_a: " + date_a.toLocaleDateString());
+      
+      if (date_a.getTime() > new Date(1900,1,1,0,0,0).getTime()) {
+        console.log("date_a: " + date_a.toLocaleDateString() + " " + date_a.toLocaleTimeString() + " > 1900/01/01 00:00:00");
+        // var ddd   = $("#txt_newOT_fecEntrega").val();
+        // console.log("ddd: " + ddd);
+        var date_e = new Date($("#txt_newOT_fecEntrega").val());
+        var aa_e   = date_e.getFullYear();
+        var mm_e   = date_e.getMonth();
+        var dd_e   = parseInt(date_e.getDate())+1;
+        var tt_e   = $("#txt_newOT_hrEntrega").val();
+        var hh_e   = parseInt(tt_e.split(":")[0]);
+        var mi_e   = parseInt(tt_e.split(":")[1]);
+        
+        // var f_atn = new Date( dd.substring(8,12), dd.substring(3,5), dd.substring(0,2), hh_a, mm_a, 0);
+        // var f_ent = new Date(ddd.substring(8,12),ddd.substring(3,5),ddd.substring(0,2), hh_e, mm_e, 0);
+        // var f_atn = new Date(dd_a.getFullYear(), dd_a.getMonth(), dd_a.getDate(), hh_a, mm_a, 0);
+        var f_atn = date_a;
+        var f_ent = new Date(aa_e, mm_e, dd_e, hh_e, mi_e, 0);
+
+        console.log("date_a: " + date_a.toLocaleDateString());
+        console.log("tt_a:   " + date_a.toLocaleTimeString());
+        console.log("date_e: " + date_e.toLocaleDateString());
+        console.log("tt_e:   " + tt_e);
+        console.log("f_atn:  " + f_atn.toLocaleDateString() + " " + f_atn.toLocaleTimeString());
+        console.log("f_ent:  " + f_ent.toLocaleDateString() + " " + f_ent.toLocaleTimeString());
+
+        if (f_atn.getTime() > new Date(1900,1,1,0,0,0).getTime()) {
+          if (f_ent.getTime() > new Date(1900,1,1,0,0,0).getTime()) {
+            if (f_ent.getTime() < f_atn.getTime()) {
+              console.log("En Tiempo");
+              document.getElementById("txt_newOT_EnTiempo").value = "En Tiempo";
+            } else {
+              console.log("Fuera de Tiempo");
+              document.getElementById("txt_newOT_EnTiempo").value = "Fuera de Tiempo";
+            }
+            //validar días que tardó en atender
+            var date_env = new Date($("#txt_newOT_fecEnv").val());
+            var aa_env   = date_e.getFullYear();
+            var mm_env   = date_e.getMonth();
+            var dd_env   = parseInt(date_e.getDate())+1;
+            var dias_atn = date_e.getTime() - date_env.getTime();
+            var tt_dias = Math.round(dias_atn/ (1000*60*60*24));
+            console.log(tt_dias);
+            console.log('dais_atn: ' + tt_dias);
+            document.getElementById("txt_newOT_diasAtn").value = tt_dias;
+
+          } else { console.log("falta fecha entrega"); }
+        } else { console.log("falta fecha ateción"); }
+      } else { console.log("date_a: " + date_a + " inválida..."); }
+      document.getElementById("txt_newOT_Observ").value = "listo " + new Date().toLocaleTimeString();
+    }
+
+    $('#dt_OTs').on('click', 'tbody tr', function(event) {
+      $(this).addClass("highlight").siblings().removeClass("highlight");
+      const ot     = $(this).find('td:eq(0)').text();
+      const f_sol  = $(this).find('td:eq(1)').text();
+      const desc   = $(this).find('td:eq(2)').text();
+      const a_sol  = $(this).find('td:eq(3)').text();
+      const sol    = $(this).find('td:eq(4)').text();
+      const asig   = $(this).find('td:eq(5)').text();
+      const f_env  = $(this).find('td:eq(6)').text();
+      const stats  = $(this).find('td:eq(7)').text();
+      const urg    = $(this).find('td:eq(8)').text();
+      const comp   = $(this).find('td:eq(9)').text();
+      const t_atn  = $(this).find('td:eq(10)').text();
+      const f_atn  = $(this).find('td:eq(11)').text();
+      const f_ent  = $(this).find('td:eq(12)').text();
+      const n_time = $(this).find('td:eq(13)').text();
+      const observ = $(this).find('td:eq(14)').text();
+      ot_sct       = ot;
+      f_sol_sct    = f_sol;
+      desc_sct     = desc;
+      a_sol_sct    = a_sol;
+      sol_sct      = sol;
+      asig_sct     = asig;
+      f_env_sct    = f_env;
+      stats_sct    = stats;
+      urg_sct      = urg;
+      comp_sct     = comp;
+      t_atn_sct    = t_atn;
+      f_atn_sct    = f_atn;
+      f_ent_sct    = f_ent;
+      n_time_sct   = n_time;
+      observ_sct   = observ;
+      console.log('ot:     ' + ot);
+      console.log('f_sol:  ' + f_sol);
+      console.log('desc:   ' + desc);
+      console.log('a_sol:  ' + a_sol);
+      console.log('sol:    ' + sol);
+      console.log('asig:   ' + asig);
+      console.log('f_env:  ' + f_env);
+      console.log('stats:  ' + stats);
+      console.log('urg:    ' + urg);
+      console.log('comp:   ' + comp);
+      console.log('t_atn:  ' + t_atn);
+      console.log('f_atn:  ' + f_atn);
+      console.log('f_ent:  ' + f_ent);
+      console.log('n_time: ' + n_time);
+      console.log('observ: ' + observ);
+    });
+
+    // $('#dt_OTs').on('dblclick', 'tr', function(event) {
+    //   const ot = $(this).find('td:eq(0)').text();
+    //   console.log('ot seleccionada por doble click: ' + ot);
+    // });
+
+    function btn_newOT_clic(slct) {
+      $("#newOT").modal("show");
+      var dd = new Date();
+      var ds = zfill(dd.getDate(),2) + "/" + zfill((dd.getMonth() + 1),2) + "/" + dd.getFullYear();
+      console.log("dd: " + dd + "\nds: " + ds);
+      document.getElementById("txt_tit_newOT_modal").innerHTML = "Nueva OT";
+      document.getElementById("txt_newOT_numOT").value     = "SMS-1234-19";
+      document.getElementById("txt_newOT_fecSol").value    = ds;
+      document.getElementById("txt_newOT_Desc").value      = "prueba " + dd.toLocaleTimeString();
+      document.getElementById('txt_newOT_fecEnv').type     = 'date';
+      document.getElementById('txt_newOT_horEnv').type     = 'time';
+      document.getElementById('txt_newOT_fecAtn').type     = 'date';
+      document.getElementById('txt_newOT_hrAtn').type      = 'time';
+      document.getElementById('txt_newOT_fecEntrega').type = 'date';
+      document.getElementById('txt_newOT_hrEntrega').type  = 'time';
+      $("#txt_newOT_Desc").focus();
+    }
+  
+    function btn_editOT_clic(slct) {
+      if (ot_sct !== '') {
+        cargandoOTParaEdicion = true;
+        $("#newOT").modal("show");
+        document.getElementById("txt_tit_newOT_modal").innerHTML = "Editar OT";
+        
+        // escribimos los datos seleccionados
+        console.log('ot_sct: ' + ot_sct);
+        document.getElementById("txt_newOT_numOT").value = ot_sct;
+        
+        console.log('f_sol_sct: ' + f_sol_sct);
+        escribirFechaEnInput(f_sol_sct, 'txt_newOT_fecSol', 'date');
+
+        console.log('desc_sct: ' + desc_sct );
+        document.getElementById("txt_newOT_Desc").value = desc_sct;
+        
+        console.log('a_sol_sct: ' + a_sol_sct);
+        $('#slc_newOT_Area_Solicitante option:contains("' + a_sol_sct + '")').prop('selected', true);
+        
+        console.log('sol_sct: ' + sol_sct);
+        $('#slc_newOT_Solicitante option:contains("' + sol_sct + '")').prop('selected', true);
+        
+        console.log('asig_sct: ' + asig_sct);
+        $('#slc_newOT_AsignadoA option:contains("' + asig_sct + '")').prop('selected', true);
+        
+        console.log('f_env_sct: ' + f_env_sct);
+        escribirFechaEnInput(f_env_sct, 'txt_newOT_fecEnv', 'date');
+        escribirFechaEnInput(f_env_sct, 'txt_newOT_horEnv', 'time');
+        
+        console.log('stats_sct: ' + stats_sct);
+        $('#slc_newOT_Estatus option:contains("' + stats_sct + '")').prop('selected', true);
+        
+        console.log('urg_sct: ' + urg_sct);
+        $('#slc_newOT_Urgencia option:contains("' + urg_sct + '")').prop('selected', true);
+        
+        console.log('comp_sct: ' + comp_sct);
+        $('#slc_newOT_Complejidad option:contains("' + comp_sct + '")').prop('selected', true);
+        
+        console.log('t_atn_sct: ' + t_atn_sct);
+        document.getElementById("txt_newOT_TiempoAtn").value = t_atn_sct;
+        
+        console.log('f_atn_sct: ' + f_atn_sct);
+        escribirFechaEnInput(f_atn_sct, 'txt_newOT_fecAtn', 'date');
+        escribirFechaEnInput(f_atn_sct, 'txt_newOT_hrAtn',  'time');
+        
+        console.log('f_ent_sct: ' + f_ent_sct);
+        escribirFechaEnInput(f_ent_sct, 'txt_newOT_fecEntrega', 'date');
+        escribirFechaEnInput(f_ent_sct, 'txt_newOT_hrEntrega',  'time');
+        
+        console.log('n_time_sct: ' + n_time_sct);
+        document.getElementById("txt_newOT_EnTiempo").value = n_time_sct;
+        
+        console.log('observ_sct: ' + observ_sct);
+        document.getElementById("txt_newOT_Observ").value = observ_sct;
+        cargandoOTParaEdicion = false;
+      } else { alert('Debe seleccionar un registro a Editar.'); }
+    }
+
+    function escribirFechaEnInput(fecha, input, tipo) {
+      console.log(' ');
+      console.log(' ');
+      console.log(' ');
+      console.log('Escribir: ' + fecha + ' en input: ' + input + ' como: ' + tipo);
+      var ff = new Date(fecha);
+      console.log('ff:      ' + ff);
+      document.getElementById(input).type = 'text';
+      switch (tipo) {
+        case 'date': 
+          var dd = zfill(parseInt(ff.getDate()), 2);
+          var mm = zfill(parseInt(ff.getMonth() + 1), 2);
+          var aa = ff.getFullYear();
+          console.log('ff_date: ' + ff.toLocaleDateString()); 
+          console.log('ff_dd:   ' + dd); 
+          console.log('ff_mm:   ' + mm); 
+          console.log('ff_aa:   ' + aa); 
+          document.getElementById(input).value = dd.toString() + '/' + mm.toString() + '/' + aa.toString();
+          //document.getElementById(input).type = 'date';
+          break;
+        case 'time':
+          var hh = zfill(parseInt(ff.getHours()), 2);
+          var mi = zfill(parseInt(ff.getMinutes()), 2);
+          if (parseInt(hh) === 0) { hh = '09'; }
+          console.log('ff_time: ' + ff.toLocaleTimeString());
+          console.log('ff_hh:   ' + hh);
+          console.log('ff_mi:   ' + mi);
+          document.getElementById(input).value = hh.toString() + ':' + mi.toString();
+          //document.getElementById(input).type = 'time';
+          break;
+      }
+      console.log('listo.');
+    }
+
+    function btn_Cancelar_clic(slct) {
+      // limpiarmos los campos
+      document.getElementById("txt_newOT_numOT").value  = '';
+      document.getElementById("txt_newOT_fecSol").value = '';
+      document.getElementById("txt_newOT_Desc").value   = '';
+      $('#slc_newOT_Area_Solicitante option:contains("--Seleccione--")').prop('selected', true);
+      $('#slc_newOT_Solicitante option:contains("--Seleccione--")').prop('selected', true);
+      $('#slc_newOT_AsignadoA option:contains("--Seleccione--")').prop('selected', true);
+      document.getElementById("txt_newOT_fecEnv").value = '';
+      document.getElementById("txt_newOT_horEnv").value = '';
+      $('#slc_newOT_Estatus option:contains("--Seleccione--")').prop('selected', true);
+      $('#slc_newOT_Urgencia option:contains("--Seleccione--")').prop('selected', true);
+      $('#slc_newOT_Complejidad option:contains("--Seleccione--")').prop('selected', true);
+      document.getElementById("txt_newOT_TiempoAtn").value  = '';
+      document.getElementById("txt_newOT_fecAtn").value     = '';
+      document.getElementById("txt_newOT_hrAtn").value      = '';
+      document.getElementById("txt_newOT_fecEntrega").value = '';
+      document.getElementById("txt_newOT_hrEntrega").value  = '';
+      document.getElementById("txt_newOT_EnTiempo").value   = '';
+      document.getElementById("txt_newOT_Observ").value     = '';
+    }
+
+    function btn_Guardar_clic(slct) {
+
+
+    }
+
+    function btn_attDoc_clic(slct) {
+      if (ot_sct !== '') {
+        $("#attachDoc").modal("show");
+        document.getElementById("txt_attachDoc_NumOT").value = ot_sct;
+      } else { alert('Debe seleccionar un registro a Adjuntarle Documentos.'); }
+    }
+
+    function slc_Filtro_Status_chg(slct) {
+      var selectedText  = slct.options[slct.selectedIndex].innerHTML;
+      var selectedValue = slct.value;
+      switch (selectedValue)
+      {
+        case "Todo":
+          break;
+        case "CANCELADAS":
+          break;
+        case "CON USUARIO":
+          break;
+        case "EN QA":
+          break;
+        case "EN PROCESO":
+          break;
+        case "ATENDIDAS":
+          break;
+      }
+      Console.lag('Mostramos ' + selectedValue);
+      var d  = new Date();
+      var dd = d.toLocaleTimeString();
+      $("#updatedDate_OTs").innerHTML = "Actualizado a las " + dd;
+    }
+
+    // Nueva OT
+    $("#txt_newOT_fecEnv").change( function() {
+      if (cargandoOTParaEdicion == false) {
+        var date = $(this).val();
+        console.log("Fecha Envío: " + date);
+        calculaTA();
+      }
+    });
+
+    $("#txt_newOT_horEnv").change( function() {
+      if (cargandoOTParaEdicion == false) {
+        var time = $(this).val();
+        console.log("Hora Envío: " + time);
+        calculaTA();
+      }
+    });
+
+    $("#txt_newOT_fecEntrega").change( function() {
+      if (cargandoOTParaEdicion == false) {
+        var date = $(this).val();
+        console.log("Fecha Entrega: " + date);
+        validarEnTiempo();
+      }
+    });
+
+    $("#txt_newOT_hrEntrega").change( function() {
+      if (cargandoOTParaEdicion == false) {
+        var time = $(this).val();
+        console.log("Hora Entrega: " + time);
+        validarEnTiempo();
+      }
+    });
+
+    function slc_newOT_Area_Solicitante_chg(slct) {
+      var selectedValue = slct.value;
+      // console.log("Value: " + selectedValue);
+      // $("#slc_newOT_Solicitante").empty();
+      // // console.log("slc_newOT_Solicitante limpio.")
+      // for (i=1; i<=5; i++) {
+      //   var txt = selectedValue.concat("_User_" , i);
+      //   // console.log(txt);
+      //   var vv  = "User_".concat(i);
+      //   // console.log(vv);
+      //   var o   = new Option(txt, vv);
+      //   $("#slc_newOT_Solicitante").append(o);
+      // }
+      // var o = new Option('Annylu Segura Hernández', 'ASH');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Carlos Torres Jiménez','CTJ');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('César López Muñoz','CLM');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Danae Aguirre Mayorga','DAM');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Ismael Luna López','ILL');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Jorge Alberto Cabello Aguilar','JACA');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Lucila Viridiana Vázquez Velasco','LVVV');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Ma. De los Angeles Pérez Fraga','MDAPF');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Marco Antonio Hernandez Molina','MAHM');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Miguel Ángel Gómez Recillas','MAGR');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Ricardo Espinosa ramos','RER');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Ruben Bernal Cruz','RBC');
+      // $("#slc_newOT_Solicitante").append(o);
+      // o = new Option('Yenessi Hernández Quiroga','YHQ');
+      // $("#slc_newOT_Solicitante").append(o);
+
+      // para cuando obtenga los datos de la bd
+      // $.each(items, function (i, item) {
+      //   $("#mySelect").append($("<option>", { 
+      //     value: item.value,
+      //     text : item.text 
+      //   }));
+      // });
+    }
+
+    function slc_newOT_Status_chg(slct) {
+      var selectedValue = slct.value;
+      switch (selectedValue)
+      {
+        case "CANCELADAS" :
+          document.getElementById("div_newOT_Observ_Cancel").style.display = "flex";
+          document.getElementById("div_newOT_Observ_Atn").style.display    = "none";
+          break;
+        case "ATENDIDA":
+          document.getElementById("div_newOT_Observ_Atn").style.display    = "flex";
+          document.getElementById("div_newOT_Observ_Cancel").style.display = "none";
+          break;
+        default:
+          document.getElementById("div_newOT_Observ_Cancel").style.display = "none";
+          document.getElementById("div_newOT_Observ_Atn").style.display    = "none";
+          break;
+      }
+    }
+
+    function slc_newOT_Urgencia_chg(slct) {
+      if (cargandoOTParaEdicion == false) {
+        var uu = slct.value;
+        if (uu !== "--Seleccione--") {
+          calculaTA();
+        }
+      }
+    }
+
+    function slc_newOT_Complejidad_chg(slct) {
+      if (cargandoOTParaEdicion == false) {
+        var cc = slct.value;
+        if (cc !== "--Seleccione--") {
+          calculaTA();
+        }
+      }
+    }
+
+    function calculaTA() {
+      var uu = $("#slc_newOT_Urgencia option:selected").text();
+      var cc = $("#slc_newOT_Complejidad option:selected").text();
+      console.log("Urgencia : " + uu + "    Complejidad : " + cc);
+      if ((uu !== "--Seleccione--") && (cc !== "--Seleccione--")) {
+        var s_t = "0";
+        var i_t = "0";
+        switch(uu) {
+          case "Muy Alta": 
+            switch(cc) {
+              case "Muy Alta": s_t = "A determinar"; i_t = 0; break;
+              case "Alta":     s_t = "A determinar"; i_t = 0; break;
+              case "Media":    s_t = "A determinar"; i_t = 0; break;
+              case "Baja":     s_t = "A determinar"; i_t = 0; break;
+            }
+            break;
+          case "Alta": 
+            switch(cc) {
+              case "Muy Alta": s_t = "18 hrs."; i_t = 18; break;
+              case "Alta":     s_t = "24 hrs."; i_t = 24; break;
+              case "Media":    s_t = "32 hrs."; i_t = 32; break;
+              case "Baja":     s_t = "40 hrs."; i_t = 40; break;
+            }
+            break;
+          case "Media": 
+            switch(cc) {
+              case "Muy Alta": s_t = "12 hrs."; i_t = 12; break;
+              case "Alta":     s_t = "18 hrs."; i_t = 18; break;
+              case "Media":    s_t = "24 hrs."; i_t = 24; break;
+              case "Baja":     s_t = "32 hrs."; i_t = 32; break;
+            }
+            break;
+          case "Baja": 
+            switch(cc) {
+              case "Muy Alta": s_t = "8 hrs.";  i_t = 8;  break;
+              case "Alta":     s_t = "12 hrs."; i_t = 12; break;
+              case "Media":    s_t = "18 hrs."; i_t = 18; break;
+              case "Baja":     s_t = "24 hrs."; i_t = 24; break;
+            }
+            break;
+        }
+        console.log("s_t: " + s_t);
+        document.getElementById("txt_newOT_TiempoAtn").value = s_t;
+        // para calcular la fecha de atención máxima
+        // cuantas horas se suman
+        if  (i_t > 0) {
+          // 1 - deshabilitamos los controles
+          var i1      = $('#txt_newOT_fecAtn');
+          i1.disabled = true;
+          i1.type     = "text";
+          var i2      = $('#txt_newOT_hrAtn');
+          i2.disabled = true;
+          i2.type     = "text";
+
+          // 2 - obtenemos la fecha de envío
+          var ff      = new Date($('#txt_newOT_fecEnv').val());
+          var ff_aa   = ff.getFullYear();
+          var ff_mes  = ff.getMonth();
+          var ff_dd   = ff.getDate() + 1;
+          var hr      = $('#txt_newOT_horEnv').val();
+          var hh      = hr.split(":")[0];
+          var mm      = hr.split(":")[1];
+          var f_envio = new Date(ff_aa, ff_mes, ff_dd, hh, mm, '00');
+
+          console.log("obtenemos la fecha de envío...");
+          console.log("ff:     " + ff);
+          console.log("ff_dd:  " + ff_dd);
+          console.log("ff_mes: " + ff_mes);
+          console.log("ff_aa:  " + ff_aa);
+          console.log("hr:     " + hr);
+          console.log("hh:     " + hh);
+          console.log("mm:     " + mm);
+          console.log("f_envio: " + f_envio.toLocaleDateString() + " " + f_envio.toLocaleTimeString()); 
+          
+          // 3 - sumar las horas de atención
+          var f_atn = new Date();
+          switch (i_t) {
+            case 40: 
+              // agregamos 4 días a la fecha de envío para calcular la fecha de atención
+              f_atn = sumarDias(f_envio, 4, 0);
+              break;
+            case 32:
+              // agregamos 3 días y 2 hrs a la fecha de envío para calcular la fecha de atención
+              f_atn = sumarDias(f_envio, 3, 2);
+              break;
+            case 24: 
+              // agregamos 2 días y 4 hrs a la fecha de envío para calcular la fecha de atención
+              f_atn = sumarDias(f_envio, 2, 4);
+              break;
+            case 18: 
+              // agregamos 1 día y 8 hrs a la fecha de envío para calcular la fecha de atención  
+              f_atn = sumarDias(f_envio, 1, 8);
+              break;
+            case 12: 
+              // agregamos 1 días y 2 hrs a la fecha de envío para calcular la fecha de atención
+              f_atn = sumarDias(f_envio, 1, 2);
+              break;
+            case  8: 
+              // agregamos 8 hrs a la fecha de envío para calcular la fecha de atención
+              f_atn = sumarDias(f_envio, 0, 8);
+              break;
+          }
+          console.log("fecha atención: " + f_atn.toLocaleDateString() + " " + f_atn.toLocaleTimeString());
+          var s_ff     = f_atn.toLocaleDateString();
+          var f_atn_dd = f_atn.getDate();
+          var s_dd     = zfill( f_atn.getDate(), 2);
+          var s_mm     = zfill((f_atn.getMonth() + 1), 2);
+          var s_aa     =        f_atn.getFullYear();
+          console.log(' ');
+          console.log(' ');
+          console.log('validamo el num de días que se tardó en atender');
+          console.log('f_atn_dd - ff_dd : ' + f_atn_dd + ' - ' + ff_dd);
+
+          escribirFechaEnInput(f_atn, 'txt_newOT_fecAtn', 'date');
+          escribirFechaEnInput(f_atn, 'txt_newOT_hrAtn', 'time');          
+        } else {
+          // como la Urgencia es muy alta, la fecha de atención se pone a mano
+          var i1 = $('#txt_newOT_fecAtn');
+          i1.disabled = false;
+          i1.type = "Date";
+          var i2 = $('#txt_newOT_hrAtn');
+          i2.disabled = false;
+          i2.type = "text";
+        }
+      }
+    }
+
+    function sumarDias(fec, dias, horas) {
+      var fecha = new Date(fec);
+      var ff    = fecha.toLocaleDateString();
+      var hr    = fecha.toLocaleTimeString();
+      var hh    = parseInt(hr.split(":")[0]);
+      var mm    = parseInt(hr.split(":")[1]);
+      console.log("Sumar Días...");
+      console.log("Descomponemos la fecha de entrada");
+      console.log("ff: " + ff);
+      console.log("hr: " + hr);
+      console.log("hh: " + hh);
+      console.log("mm: " + mm);
+      for (i=1; i<=dias; i++) {
+        console.log("agregamos el día " + i);
+        var anio = fecha.getFullYear();
+        var mes  = fecha.getMonth() + 1;
+        var dia  = fecha.getDate()  + 1;
+        console.log("dia:  " + dia);
+        console.log("mes:  " + mes);
+        console.log("anio: " + anio);
+        fecha = new Date(anio, mes, dia, hh, mm, '00');
+        fecha = validarDia(fecha);
+      }
+      console.log("ahora sumamos las horas: " + horas);
+      var hh_f = parseInt(hh + horas);
+      console.log("hh_f: " + hh_f);
+      if (hh_f < 19) {
+        // no importa si hay minutos sueltos, la hora pertenece al mismo día 
+        fecha = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hh_f, mm, '00');
+      } else if (hh_f === 19) {
+        // si las horas suman 19
+        fecha = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate(), hh_f, mm, '00');
+        // pero mm > 0
+        if (mm > 0) {
+          hh_f  = hh_f - 10;
+          fecha = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate() + 1, hh_f, mm, '00');
+        }
+      } else {
+        // si la hora final es mayor a 19, sumamos 1 día a la fecha de entrega y restamos 10 hrs a la hora final
+        hh_f  = hh_f - 10;
+        fecha = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate() + 1, hh_f, mm, '00');
+      }
+      fecha = validarDia(fecha);
+      console.log("Resultado Sumar Días fecha: " + fecha.toLocaleDateString() + " " + fecha.toLocaleTimeString());
+      return fecha;
+    }
+
+    function validarDia(fec) {
+      console.log(' ');
+      console.log(' ');
+      console.log(' ');
+      console.log('Validar Día...');
+      var fecha = new Date(fec);
+      console.log("fecha: " + fecha.toLocaleDateString()+ " " + fecha.toLocaleTimeString());
+      var dd    = fecha.getDay();
+      console.log("obtenemos el día de la semana: " + dd);
+      if (dd > 4) {
+        var ff = fecha.toLocaleDateString();
+        var hr = fecha.toLocaleTimeString();
+        var hh = hr.split(":")[0];
+        var mm = hr.split(":")[0];
+        console.log("Descomponemos la fecha de entrada");
+        console.log("ff: " + ff);
+        console.log("hr: " + hr);
+        console.log("hh: " + hh);
+        console.log("mm: " + mm);
+        switch (dd) {
+          case 6: 
+            console.log("Es sabado, agregamos 2 días");
+            fecha = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate() + 2, hh, mm, '00');
+            break;
+          case 0: 
+            console.log("Es domingo, agregamos 1 días");
+            fecha = new Date(fecha.getFullYear(), fecha.getMonth(), fecha.getDate() + 1, hh, mm, '00');
+            break;
+        }
+      }
+      return fecha;
+    }
+
+    function zfill(number, width) {
+      var numberOutput = Math.abs(number); /* Valor absoluto del número */
+      var length       = number.toString().length; /* Largo del número */ 
+      var zero         = "0"; /* String de cero */
+      if (width <= length) {
+        if (number < 0) { return ("-" + numberOutput.toString()); }
+        else { return numberOutput.toString(); }
+      } else {
+        if (number < 0) { return ("-" + (zero.repeat(width - length)) + numberOutput.toString()); } 
+        else { return ((zero.repeat(width - length)) + numberOutput.toString()); }
+      }
+    }
+  </script>
+
+</body>
+
+</html>
