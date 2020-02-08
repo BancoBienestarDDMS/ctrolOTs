@@ -561,7 +561,7 @@
               </table>
             </div>
           </div>
-          <div class="card-footer small text-muted" id="updatedDate_OTs">Actualizado a las 12:29 p.m.</div>
+          <div class="card-footer small text-muted" id="updatedDate_OTs">Actualizado 07/02/2020 a las 18:45 p.m.</div>
         </div>
 
       </div>
@@ -969,8 +969,8 @@
 
     $('#dt_OTs').on('click', 'tbody tr', function(event) {
       $(this).addClass("highlight").siblings().removeClass("highlight");
-      const ot     = $(this).find('td:eq(0)').text();
-      const f_sol  = $(this).find('td:eq(1)').text();
+      const OT     = $(this).find('td:eq(0)').text();
+      const Fecha_Solicitud  = $(this).find('td:eq(1)').text();
       const desc   = $(this).find('td:eq(2)').text();
       const a_sol  = $(this).find('td:eq(3)').text();
       const sol    = $(this).find('td:eq(4)').text();
