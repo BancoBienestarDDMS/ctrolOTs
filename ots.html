@@ -112,27 +112,27 @@
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Asignación: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
               <option>Todo</option>
-              <option>Appwhere</option>
+              <!-- <option>Appwhere</option>
               <option>GERENCIA DE INFORMACION</option>
               <option>INFOTEC</option>
-              <option>Soporte UANL</option>
+              <option>Soporte UANL</option> -->
             </select>
 
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Status">Estatus: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Status" onchange="slc_Filtro_Status_chg(this)">
               <option>Todo</option>
-              <option>Canceladas</option>
+              <!-- <option>Canceladas</option>
               <option>Con Usuario</option>
               <option>En QA</option>
               <option>En Proceso</option>
-              <option>Atendidas</option>
+              <option>Atendidas</option> -->
             </select>
             
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">En tiempo: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
               <option>Todo</option>
-              <option>En Tiempo</option>
-              <option>Fuera de Tiempo</option>
+              <!-- <option>En Tiempo</option>
+              <option>Fuera de Tiempo</option> -->
             </select>
           </div>
         </div>
@@ -159,8 +159,9 @@
             <button type="button" class="btn btn-sm btn-info" onclick="btn_newOT_clic(this)"  style="margin-top: -10px; margin-bottom: 10px;">Nueva OT</button>
             <button type="button" class="btn btn-sm btn-info" onclick="btn_editOT_clic(this)" style="margin-top: -10px; margin-bottom: 10px;">Editar OT</button>
             <button type="button" class="btn btn-sm btn-info" onclick="btn_attDoc_clic(this)" style="margin-top: -10px; margin-bottom: 10px;">Adjuntar Documentos</button>
-            <div class="table-responsive">
-              <table class="table table-bordered display" id="dt_OTs" width="100%" cellspacing="0">
+            <div class="table-responsive" id="c_dt_OTs">
+              <table class="display" id="dt_OTs" width="100%" cellspacing="0">
+                <!-- table table-bordered 
                 <thead>
                   <tr>
                     <th>No. OT</th>
@@ -556,8 +557,8 @@
                     <td>01/17/2019</td>
                     <td>EN TIEMPO	</td>
                     <td></td>
-                  </tr>
-                </tbody>
+                  </tr> 
+                </tbody>-->
               </table>
             </div>
           </div>
@@ -641,7 +642,7 @@
                 <option>D.G.A.3</option>
                 <option>D.G.A.4</option>
                 <option>D.G.A.5</option>
-                -->
+                
                 <option>Banca Social</option>
                 <option>Cartera de Crédito</option>
                 <option>Dirección de Sucursales</option>
@@ -650,13 +651,14 @@
                 <option>Operación Tradicional</option>
                 <option>Subdirección de Mantenimiento de Software</option>
                 <option>Subdirector de Control de la Operación</option>
+                -->
               </select>
             </div>
             <div      class="form-inline form-group">
               <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Solicitante">Solicitante:</label>
               <select class="form-control form-control-sm ml-3" id="slc_newOT_Solicitante" style="width: 200px;">
                 <option>--Seleccione--</option>
-                <option>Annylu Segura Hernández</option>
+                <!-- <option>Annylu Segura Hernández</option>
                 <option>Carlos Torres Jiménez</option>
                 <option>César López Muñoz</option>
                 <option>Danae Aguirre Mayorga</option>
@@ -668,17 +670,17 @@
                 <option>Miguel Ángel Gómez Recillas</option>
                 <option>Ricardo Espinosa ramos</option>
                 <option>Ruben Bernal Cruz</option>
-                <option>Yenessi Hernández Quiroga</option>
+                <option>Yenessi Hernández Quiroga</option> -->
               </select>
             </div>
             <div      class="form-inline form-group">
               <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_AsignadoA">Asignado a:</label>
               <select class="form-control form-control-sm ml-3" id="slc_newOT_AsignadoA" style="width: 200px;">
                 <option>--Seleccione--</option>
-                <option>Appwhere</option>
+                <!-- <option>Appwhere</option>
                 <option>GERENCIA DE INFORMACION</option>
                 <option>INFOTEC</option>
-                <option>Soporte UANL</option>
+                <option>Soporte UANL</option> -->
               </select>
             </div>
             <div     class="form-inline form-group">
@@ -693,11 +695,11 @@
               <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Estatus">Estatus:</label>
               <select class="form-control form-control-sm ml-3" id="slc_newOT_Estatus" style="width: 200px;" onchange="slc_newOT_Status_chg(this)">
                 <option>--Seleccione--</option>
-                <option>CANCELADAS</option>
+                <!-- <option>CANCELADAS</option>
                 <option>CON USUARIO</option>
                 <option>EN QA</option>
                 <option>EN PROCESO</option>
-                <option>ATENDIDA</option>
+                <option>ATENDIDA</option> -->
               </select>
             </div>
             <div        class="form-inline form-group" id="div_newOT_Observ_Cancel" style="display: none;">
@@ -712,20 +714,20 @@
               <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Urgencia">Urgencia:</label>
               <select class="form-control form-control-sm ml-3" id="slc_newOT_Urgencia" style="width: 200px;" onchange="slc_newOT_Urgencia_chg(this)">
                 <option>--Seleccione--</option>
-                <option>Muy Alta</option>
+                <!-- <option>Muy Alta</option>
                 <option>Alta</option>
                 <option>Media</option>
-                <option>Baja</option>
+                <option>Baja</option> -->
               </select>
             </div>
             <div      class="form-inline form-group">
               <label  class="control-label" style="width: 130px; text-align: right;" for="slc_newOT_Complejidad">Complejidad:</label>
               <select class="form-control form-control-sm ml-3" id="slc_newOT_Complejidad" style="width: 200px;" onchange="slc_newOT_Complejidad_chg(this)">
                 <option>--Seleccione--</option>
-                <option>Muy Alta</option>
+                <!-- <option>Muy Alta</option>
                 <option>Alta</option>
                 <option>Media</option>
-                <option>Baja</option>
+                <option>Baja</option> -->
               </select>
             </div>
             <div     class="form-inline form-group">
@@ -968,52 +970,52 @@
     }
 
     $('#dt_OTs').on('click', 'tbody tr', function(event) {
-      $(this).addClass("highlight").siblings().removeClass("highlight");
-      const OT     = $(this).find('td:eq(0)').text();
-      const Fecha_Solicitud  = $(this).find('td:eq(1)').text();
-      const desc   = $(this).find('td:eq(2)').text();
-      const a_sol  = $(this).find('td:eq(3)').text();
-      const sol    = $(this).find('td:eq(4)').text();
-      const asig   = $(this).find('td:eq(5)').text();
-      const f_env  = $(this).find('td:eq(6)').text();
-      const stats  = $(this).find('td:eq(7)').text();
-      const urg    = $(this).find('td:eq(8)').text();
-      const comp   = $(this).find('td:eq(9)').text();
-      const t_atn  = $(this).find('td:eq(10)').text();
-      const f_atn  = $(this).find('td:eq(11)').text();
-      const f_ent  = $(this).find('td:eq(12)').text();
-      const n_time = $(this).find('td:eq(13)').text();
-      const observ = $(this).find('td:eq(14)').text();
-      ot_sct       = ot;
-      f_sol_sct    = f_sol;
-      desc_sct     = desc;
-      a_sol_sct    = a_sol;
-      sol_sct      = sol;
-      asig_sct     = asig;
-      f_env_sct    = f_env;
-      stats_sct    = stats;
-      urg_sct      = urg;
-      comp_sct     = comp;
-      t_atn_sct    = t_atn;
-      f_atn_sct    = f_atn;
-      f_ent_sct    = f_ent;
-      n_time_sct   = n_time;
-      observ_sct   = observ;
-      console.log('ot:     ' + ot);
-      console.log('f_sol:  ' + f_sol);
-      console.log('desc:   ' + desc);
-      console.log('a_sol:  ' + a_sol);
-      console.log('sol:    ' + sol);
-      console.log('asig:   ' + asig);
-      console.log('f_env:  ' + f_env);
-      console.log('stats:  ' + stats);
-      console.log('urg:    ' + urg);
-      console.log('comp:   ' + comp);
-      console.log('t_atn:  ' + t_atn);
-      console.log('f_atn:  ' + f_atn);
-      console.log('f_ent:  ' + f_ent);
-      console.log('n_time: ' + n_time);
-      console.log('observ: ' + observ);
+      // $(this).addClass("highlight").siblings().removeClass("highlight");
+      // const OT     = $(this).find('td:eq(0)').text();
+      // const Fecha_Solicitud  = $(this).find('td:eq(1)').text();
+      // const desc   = $(this).find('td:eq(2)').text();
+      // const a_sol  = $(this).find('td:eq(3)').text();
+      // const sol    = $(this).find('td:eq(4)').text();
+      // const asig   = $(this).find('td:eq(5)').text();
+      // const f_env  = $(this).find('td:eq(6)').text();
+      // const stats  = $(this).find('td:eq(7)').text();
+      // const urg    = $(this).find('td:eq(8)').text();
+      // const comp   = $(this).find('td:eq(9)').text();
+      // const t_atn  = $(this).find('td:eq(10)').text();
+      // const f_atn  = $(this).find('td:eq(11)').text();
+      // const f_ent  = $(this).find('td:eq(12)').text();
+      // const n_time = $(this).find('td:eq(13)').text();
+      // const observ = $(this).find('td:eq(14)').text();
+      // ot_sct       = ot;
+      // f_sol_sct    = f_sol;
+      // desc_sct     = desc;
+      // a_sol_sct    = a_sol;
+      // sol_sct      = sol;
+      // asig_sct     = asig;
+      // f_env_sct    = f_env;
+      // stats_sct    = stats;
+      // urg_sct      = urg;
+      // comp_sct     = comp;
+      // t_atn_sct    = t_atn;
+      // f_atn_sct    = f_atn;
+      // f_ent_sct    = f_ent;
+      // n_time_sct   = n_time;
+      // observ_sct   = observ;
+      // console.log('ot:     ' + ot);
+      // console.log('f_sol:  ' + f_sol);
+      // console.log('desc:   ' + desc);
+      // console.log('a_sol:  ' + a_sol);
+      // console.log('sol:    ' + sol);
+      // console.log('asig:   ' + asig);
+      // console.log('f_env:  ' + f_env);
+      // console.log('stats:  ' + stats);
+      // console.log('urg:    ' + urg);
+      // console.log('comp:   ' + comp);
+      // console.log('t_atn:  ' + t_atn);
+      // console.log('f_atn:  ' + f_atn);
+      // console.log('f_ent:  ' + f_ent);
+      // console.log('n_time: ' + n_time);
+      // console.log('observ: ' + observ);
     });
 
     // $('#dt_OTs').on('dblclick', 'tr', function(event) {
