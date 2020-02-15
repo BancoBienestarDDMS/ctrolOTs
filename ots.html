@@ -109,6 +109,18 @@
             Filtros
           </div>
           <div class="card-body">
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Anio">Año: </label>
+            <select class="btn btn-sm btn-info" style="width: 70px;       padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Anio" >
+              <option>Todo</option>
+              <!-- 
+              <option>2019</option>
+              <option>2020</option> 
+              -->
+            </select>
+
+            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="txt_OT">#OT: </label>
+            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="txt_OT" onkeyup="keyUp_Filtro_OT(this)"></input>
+
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Asignación: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
               <option>Todo</option>
@@ -131,9 +143,11 @@
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">En tiempo: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
               <option>Todo</option>
-              <!-- <option>En Tiempo</option>
-              <option>Fuera de Tiempo</option> -->
+              <option>En Tiempo</option>
+              <option>Fuera de Tiempo</option>
             </select>
+
+            <button class="btn btn-sm btn-info" style="width: 80px; padding: 0px; margin-top: -10px; margin-bottom: -10px; margin-left: 10px;"  id="btn_Filtro_Buscar" onclick="btn_Fitlro_Buscar_clic(this)">Buscar</button>
           </div>
         </div>
 
@@ -163,7 +177,7 @@
               <table class="table table-striped table-bordered display compact" id="dt_OTs" width="100%" cellspacing="0"></table>
             </div>
           </div>
-          <div class="card-footer small text-muted" id="updatedDate_OTs"></div>
+          <div class="card-footer small text-muted" id="updatedDate_OTs"><p id="txt_updatedData_ots"></p></div>
         </div>
 
       </div>
@@ -173,7 +187,7 @@
       <footer class="sticky-footer">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>©  Banco del Bienesatar 2019</span>
+            <span id="txt_footer"></span>
           </div>
         </div>
       </footer>
@@ -496,6 +510,12 @@
     var n_time_sct = '';
     var observ_sct = '';
 
+    // Filtros
+
+    function btn_Fitlro_Buscar_clic() {
+      
+    }
+
     function validarEnTiempo() {
       console.log(" ");
       console.log(" ");
@@ -571,52 +591,52 @@
     }
 
     $('#dt_OTs').on('click', 'tbody tr', function(event) {
-      // $(this).addClass("highlight").siblings().removeClass("highlight");
-      // const OT     = $(this).find('td:eq(0)').text();
-      // const Fecha_Solicitud  = $(this).find('td:eq(1)').text();
-      // const desc   = $(this).find('td:eq(2)').text();
-      // const a_sol  = $(this).find('td:eq(3)').text();
-      // const sol    = $(this).find('td:eq(4)').text();
-      // const asig   = $(this).find('td:eq(5)').text();
-      // const f_env  = $(this).find('td:eq(6)').text();
-      // const stats  = $(this).find('td:eq(7)').text();
-      // const urg    = $(this).find('td:eq(8)').text();
-      // const comp   = $(this).find('td:eq(9)').text();
-      // const t_atn  = $(this).find('td:eq(10)').text();
-      // const f_atn  = $(this).find('td:eq(11)').text();
-      // const f_ent  = $(this).find('td:eq(12)').text();
-      // const n_time = $(this).find('td:eq(13)').text();
-      // const observ = $(this).find('td:eq(14)').text();
-      // ot_sct       = ot;
-      // f_sol_sct    = f_sol;
-      // desc_sct     = desc;
-      // a_sol_sct    = a_sol;
-      // sol_sct      = sol;
-      // asig_sct     = asig;
-      // f_env_sct    = f_env;
-      // stats_sct    = stats;
-      // urg_sct      = urg;
-      // comp_sct     = comp;
-      // t_atn_sct    = t_atn;
-      // f_atn_sct    = f_atn;
-      // f_ent_sct    = f_ent;
-      // n_time_sct   = n_time;
-      // observ_sct   = observ;
-      // console.log('ot:     ' + ot);
-      // console.log('f_sol:  ' + f_sol);
-      // console.log('desc:   ' + desc);
-      // console.log('a_sol:  ' + a_sol);
-      // console.log('sol:    ' + sol);
-      // console.log('asig:   ' + asig);
-      // console.log('f_env:  ' + f_env);
-      // console.log('stats:  ' + stats);
-      // console.log('urg:    ' + urg);
-      // console.log('comp:   ' + comp);
-      // console.log('t_atn:  ' + t_atn);
-      // console.log('f_atn:  ' + f_atn);
-      // console.log('f_ent:  ' + f_ent);
-      // console.log('n_time: ' + n_time);
-      // console.log('observ: ' + observ);
+      $(this).addClass("highlight").siblings().removeClass("highlight");
+      const OT     = $(this).find('td:eq(0)').text();
+      const Fecha_Solicitud  = $(this).find('td:eq(1)').text();
+      const desc   = $(this).find('td:eq(2)').text();
+      const a_sol  = $(this).find('td:eq(3)').text();
+      const sol    = $(this).find('td:eq(4)').text();
+      const asig   = $(this).find('td:eq(5)').text();
+      const f_env  = $(this).find('td:eq(6)').text();
+      const stats  = $(this).find('td:eq(7)').text();
+      const urg    = $(this).find('td:eq(8)').text();
+      const comp   = $(this).find('td:eq(9)').text();
+      const t_atn  = $(this).find('td:eq(10)').text();
+      const f_atn  = $(this).find('td:eq(11)').text();
+      const f_ent  = $(this).find('td:eq(12)').text();
+      const n_time = $(this).find('td:eq(13)').text();
+      const observ = $(this).find('td:eq(14)').text();
+      ot_sct       = ot;
+      f_sol_sct    = f_sol;
+      desc_sct     = desc;
+      a_sol_sct    = a_sol;
+      sol_sct      = sol;
+      asig_sct     = asig;
+      f_env_sct    = f_env;
+      stats_sct    = stats;
+      urg_sct      = urg;
+      comp_sct     = comp;
+      t_atn_sct    = t_atn;
+      f_atn_sct    = f_atn;
+      f_ent_sct    = f_ent;
+      n_time_sct   = n_time;
+      observ_sct   = observ;
+      console.log('ot:     ' + ot);
+      console.log('f_sol:  ' + f_sol);
+      console.log('desc:   ' + desc);
+      console.log('a_sol:  ' + a_sol);
+      console.log('sol:    ' + sol);
+      console.log('asig:   ' + asig);
+      console.log('f_env:  ' + f_env);
+      console.log('stats:  ' + stats);
+      console.log('urg:    ' + urg);
+      console.log('comp:   ' + comp);
+      console.log('t_atn:  ' + t_atn);
+      console.log('f_atn:  ' + f_atn);
+      console.log('f_ent:  ' + f_ent);
+      console.log('n_time: ' + n_time);
+      console.log('observ: ' + observ);
     });
 
     // $('#dt_OTs').on('dblclick', 'tr', function(event) {

@@ -58,8 +58,8 @@ $(document).ready(function() {
       $('#dt_OTs').DataTable( { 
         data : datos,
         columns: [{ title: 'Num. OT',                      data: 'OT'                        },
-                  { title: 'Cont',                         data: 'Cont'                      },
-                  { title: 'Anio',                         data: 'Anio'                      },
+                  // { title: 'Cont',                         data: 'Cont'                      },
+                  // { title: 'Anio',                         data: 'Anio'                      },
                   { title: 'Area de Solicitante',          data: 's_Area_Solicitante'        },
                   { title: 'Solicitante',                  data: 's_Solicitante'             },
                   { title: 'Area de Asignacion',           data: 's_Area_Asignacion'         },
@@ -85,18 +85,19 @@ $(document).ready(function() {
                   { title: 'Observaciones de Cancelacion', data: 'Observaciones_Cancelacion' }
                 ]
       } );
-
-      var d  = new Date();
-      var dd = d.toLocaleDateString();
-      var tt = d.toLocaleTimeString();
-      var msg = "OTs actualizadas " + dd + " a las " + tt;
-      $('#updatedDate_OTs').innerHTML = msg.toString();
-      console.log(msg);
-      console.log('listo.');
-    });
+  });
 
   // console.log('asignamos datos= ' + datos); dcx
   // console.log('a la tabla.');
   // tt.DataTable({data: datos})  
+
+  var d  = new Date();
+  var dd = d.toLocaleDateString();
+  var tt = d.toLocaleTimeString();
+  var msg = "OTs actualizadas " + dd + " a las " + tt;
+  document.getElementById("updatedDate_OTs").innerHTML = msg.toString();
+  document.getElementById("txt_footer").innerHTML = "© Banco del Bienesatar " + d.getFullYear();
+  console.log(msg);
+  console.log('listo.');
 });
 
