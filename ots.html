@@ -112,32 +112,42 @@
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Anio">Año: </label>
             <select class="btn btn-sm btn-info" style="width: 70px;       padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Anio" >
               <option>Todo</option>
-              <!-- 
+              
               <option>2019</option>
               <option>2020</option> 
-              -->
+              
             </select>
 
             <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="txt_OT">#OT: </label>
             <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="txt_OT" onkeyup="keyUp_Filtro_OT(this)"></input>
 
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Asignación: </label>
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Solicitante: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
               <option>Todo</option>
-              <!-- <option>Appwhere</option>
+              <option></option>
+              <option></option>
+              <option></option>
+              <option></option>
+            </select>
+
+
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Asignación: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Asignacion_chg(this)">
+              <option>Todo</option>
+              <option>Appwhere</option>
               <option>GERENCIA DE INFORMACION</option>
               <option>INFOTEC</option>
-              <option>Soporte UANL</option> -->
+              <option>Soporte UANL</option>
             </select>
 
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Status">Estatus: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Status" onchange="slc_Filtro_Status_chg(this)">
               <option>Todo</option>
-              <!-- <option>Canceladas</option>
+              <option>Canceladas</option>
               <option>Con Usuario</option>
               <option>En QA</option>
               <option>En Proceso</option>
-              <option>Atendidas</option> -->
+              <option>Atendidas</option>
             </select>
             
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">En tiempo: </label>
