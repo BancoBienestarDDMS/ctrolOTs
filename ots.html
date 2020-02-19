@@ -121,8 +121,17 @@
             <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="txt_OT">#OT: </label>
             <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="txt_OT" onkeyup="keyUp_Filtro_OT(this)"></input>
 
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Solicitante: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area_Solicitante">Area Solicitante: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area_solicitante" onchange="slc_Filtro_Area_Solicitante_chg(this)">
+              <option>Todo</option>
+              <option></option>
+              <option></option>
+              <option></option>
+              <option></option>
+            </select>
+
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Solicitante">Solicitante: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Solicitante">
               <option>Todo</option>
               <option></option>
               <option></option>
@@ -131,8 +140,8 @@
             </select>
 
 
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">Area Asignación: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Asignacion_chg(this)">
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area_Asignacion">Area Asignación: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area_Asignacion">
               <option>Todo</option>
               <option>Appwhere</option>
               <option>GERENCIA DE INFORMACION</option>
@@ -140,8 +149,12 @@
               <option>Soporte UANL</option>
             </select>
 
+            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="txt_Filtro_Fec_Solicitud">Fecha Solicitud: </label>
+            <input type="checkbox" id="cbx_Filtro_Rango">Rango</checkbox>
+            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="txt_Filtro_Fec_Solicitud"/>
+
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Status">Estatus: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Status" onchange="slc_Filtro_Status_chg(this)">
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Status">
               <option>Todo</option>
               <option>Canceladas</option>
               <option>Con Usuario</option>
@@ -150,8 +163,8 @@
               <option>Atendidas</option>
             </select>
             
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Area">En tiempo: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Area" onchange="slc_Filtro_Area_Solicitante_chg(this)">
+            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_En_Tiempo">En tiempo: </label>
+            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_En_Tiempo">
               <option>Todo</option>
               <option>En Tiempo</option>
               <option>Fuera de Tiempo</option>
