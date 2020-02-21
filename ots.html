@@ -150,8 +150,11 @@
             </select>
 
             <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="txt_Filtro_Fec_Solicitud">Fecha Solicitud: </label>
-            <input type="checkbox" id="cbx_Filtro_Rango">Rango</checkbox>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="txt_Filtro_Fec_Solicitud"/>
+            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="lbl_Filtro_Fec_Solicitud_de"> de </label>
+            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="txt_Filtro_Fec_Solicitud_de"/>
+            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="lbl_Filtro_Fec_Solicitud_a"> - a </label>
+            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="txt_Filtro_Fec_Solicitud_a"/>
+            <input type="checkbox"             style="                   padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="cbx_Filtro_Fec_Solicitud_Rango" onchange="cbx_Filtro_Fec_Solicitud_Rango(this)"> Rango </checkbox>
 
             <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-top: -10px; margin-bottom: -10px;" for="slc_Filtro_Status">Estatus: </label>
             <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px; margin-top: -10px; margin-bottom: -10px;"  id="slc_Filtro_Status">
@@ -830,6 +833,14 @@
           break;
       }
       Console.lag('Mostramos ' + selectedValue);
+    }
+
+    function cbx_Filtro_Fec_Solicitud_Rango(cbx) {
+      var x = document.getElementById("cbx_Filtro_Fec_Solicitud_Rango");
+      if (x.checked == true)
+      { alert("activo"); }
+      else 
+      { alert("no activo"); }
     }
 
     // Nueva OT
