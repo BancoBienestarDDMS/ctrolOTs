@@ -24,6 +24,26 @@
     .table tbody tr.highlight td {
       background-color: rgba(106, 181, 228, 0.5);
     }
+
+    .lbl {
+      text-align: left; 
+      padding: 0px; 
+      font-weight: bold;
+    }
+
+    .lbl2 {
+      text-align: center;
+      padding: 0px;
+    }
+
+    .slct {
+      text-align: left; 
+      padding: 0px;
+    }
+
+    .inpt {
+      padding: 0px;
+    }
   </style>
 </head>
 
@@ -105,59 +125,21 @@
         <!-- Filtros -->
         <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-filter"></i>
-            Filtros
+            <a data-toggle="collapse" href="#collapseFiltros">
+              <i class="fas fa-filter"></i>
+              Filtros
+            </a>
           </div>
-          <div class="card-body">
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Anio">Año: </label>
-            <select class="btn btn-sm btn-info" style="width: 70px;       padding: 0px;"                     id="slc_Filtro_Anio" >
-              <option>Todo</option>
-              
-              <option>2019</option>
+          <div id="collapseFiltros" class="card-body panel-collapse "> <!-- collapse -->
+            <label  class="lbl btn-sm           col-sm-1" for="slc_Filtro_Anio">Año: </label>
+            <select class="slct btn-sm btn-info col-sm-2"  id="slc_Filtro_Anio" >
               <option>2020</option> 
-              
+              <option>2019</option>
+              <option>Todo</option>              
             </select>
 
-            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="txt_OT">#OT: </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px;"                     id="txt_OT" onkeyup="keyUp_Filtro_OT(this)"></input>
-
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Area_Solicitante">Area Solicitante: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_Area_solicitante" onchange="slc_Filtro_Area_Solicitante_chg(this)">
-              <option>Todo</option>
-              <option></option>
-              <option></option>
-              <option></option>
-              <option></option>
-            </select>
-
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Solicitante">Solicitante: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_Solicitante">
-              <option>Todo</option>
-              <option></option>
-              <option></option>
-              <option></option>
-              <option></option>
-            </select>
-
-
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Area_Asignacion">Area Asignación: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_Area_Asignacion">
-              <option>Todo</option>
-              <option>Appwhere</option>
-              <option>GERENCIA DE INFORMACION</option>
-              <option>INFOTEC</option>
-              <option>Soporte UANL</option>
-            </select>
-
-            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="txt_Filtro_Fec_Solicitud">Fecha Solicitud (<input type="checkbox" style="padding: 0px;" id="cbx_Filtro_Fec_Solicitud_Rango" onchange="cbx_Filtro_Fec_Solicitud_Rango(this)"/>Rango) : </label>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Solicitud_de"> de </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px;"                     id="txt_Filtro_Fec_Solicitud_de" type="date" alt="01/01/2020"/>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Solicitud_a"> - a </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; display:none;"       id="txt_Filtro_Fec_Solicitud_a"  type="date" alt="02/01/2020"/>
-            
-
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Status">Estatus: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_Status">
+            <label  class="lbl btn-sm           col-sm-1" for="slc_Filtro_Status">Estatus: </label>
+            <select class="slct btn-sm btn-info col-sm-2"  id="slc_Filtro_Status">
               <option>Todo</option>
               <option>Canceladas</option>
               <option>Con Usuario</option>
@@ -165,9 +147,42 @@
               <option>En Proceso</option>
               <option>Atendidas</option>
             </select>
+
+            <label class="lbl btn-sm           col-sm-1" for="txt_OT">#OT: </label>
+            <input class="inpt btn-sm btn-info col-sm-2"  id="txt_OT" onkeyup="keyUp_Filtro_OT(this)"></input>
+
+            <br/>
+
+            <label  class="lbl btn-sm          col-sm-1" for="slc_Filtro_Area_Solicitante">A. Solicitante: </label>
+            <select class="btn btn-sm btn-info col-sm-2"  id="slc_Filtro_Area_solicitante" onchange="slc_Filtro_Area_Solicitante_chg(this)">
+              <option>Todo</option>
+              <option>Banca Social</option>
+              <option>Negocios y Corresponsales</option>
+            </select>
             
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Programa">Programa: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_Programa">
+            <label  class="lbl btn-sm          col-sm-1" for="slc_Filtro_Solicitante">Solicitante: </label>
+            <select class="btn btn-sm btn-info col-sm-2"  id="slc_Filtro_Solicitante">
+              <option>Todo</option>
+              <option>Alberto Fuentes Mendoza</option>
+              <option>Carlos Alberto Aldana Gonzalez</option>
+              <option>Danae Aguirre Mayorga</option>
+              <option>Denisse Alejandra Domínguez García</option>
+            </select>
+
+
+            <label  class="lbl btn-sm          col-sm-1" for="slc_Filtro_Area_Asignacion">A. Asignación: </label>
+            <select class="btn btn-sm btn-info col-sm-2"  id="slc_Filtro_Area_Asignacion">
+              <option>Todo</option>
+              <option>Appwhere</option>
+              <option>GERENCIA DE INFORMACION</option>
+              <option>INFOTEC</option>
+              <option>Soporte UANL</option>
+            </select>
+
+            <br/>
+
+            <label  class="lbl btn-sm          col-sm-1" for="slc_Filtro_Programa">Programa: </label>
+            <select class="btn btn-sm btn-info col-sm-2"  id="slc_Filtro_Programa">
               <option>Todo</option>
               <option>ADULTOS MAYORES</option>
               <option>AMEXCID</option>
@@ -190,8 +205,8 @@
               <option>SEMBRANDO VIDA</option>
             </select>
 
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_SubPrograma">SubPrograma: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_SubPrograma">
+            <label  class="lbl btn-sm          col-sm-1" for="slc_Filtro_SubPrograma">SubPrograma: </label>
+            <select class="btn btn-sm btn-info col-sm-2"  id="slc_Filtro_SubPrograma">
               <option>Todo</option>
               <option>ABONO A CUENTA</option>
               <option>BAJA DE RETENCION/DOMICILIACION</option>
@@ -216,8 +231,8 @@
               <option>VIVIENDA SOCIAL NIVEL 4</option>
             </select>
             
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_SubPrograma">SubPrograma: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_SubPrograma">
+            <label  class="lbl btn-sm          col-sm-1" for="slc_Filtro_SubPrograma">Tipo Servicio: </label>
+            <select class="btn btn-sm btn-info col-sm-2"  id="slc_Filtro_SubPrograma">
               <option>Todo</option>
               <option>AGREGAR TABLAS</option>
               <option>ALTA RETENCION</option>
@@ -257,60 +272,37 @@
               <option>VINCULACION TARJETAS</option>
             </select>
 
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Urgencia">Urgencia: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_Urgencia">
-              <option>Todo</option>
-              <option>Baja</option>
-              <option>Media</option>
-              <option>Alta</option>
-              <option>Muy Alta</option>
-            </select>
+            <br/>
 
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Complejidad">Complejidad: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_En_Tiempo">
-              <option>Todo</option>
-              <option>Baja</option>
-              <option>Media</option>
-              <option>Alta</option>
-              <option>Muy Alta</option>
-            </select>
-
-            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="txt_Filtro_Fec_Envio">Fecha Envío (<input type="checkbox" style="padding: 0px;" id="cbx_Filtro_Fecha_Envio_Rango" onchange="cbx_Filtro_Fecha_Envio_Rango(this)"/>Rango) : </label>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Envio_de"> de </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px;"                     id="txt_Filtro_Fec_Envio_de" type="date" alt="01/01/2020"/>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Envio_a"> - a </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; display:none;"       id="txt_Filtro_Fec_Envio_a"  type="date" alt="02/01/2020"/>
+            <label class="lbl  btn-sm          col-sm-1"                      for="txt_Filtro_Fec_Solicitud">Fecha Solicitud</label> 
+            <label class="lbl  btn-sm          col-sm-1"                                                    > ( <input type="checkbox" id="cbx_Filtro_Fec_Solicitud_Rango" onchange="cbx_Filtro_Fec_Solicitud_Rango(this)"/> Rango ) : </label>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Solicitud_de">de</label>
+            <input class="btn  btn-sm btn-info col-sm-2"                       id="txt_Filtro_Fec_Solicitud_de" type="date"/>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Solicitud_a">a</label>
+            <input class="btn  btn-sm btn-info col-sm-2" style="display:none;" id="txt_Filtro_Fec_Solicitud_a"  type="date"/>
+            <br/>
+            <label class="lbl  btn-sm          col-sm-1"                      for="txt_Filtro_Fec_Envio">Fecha Envío</label>
+            <label class="lbl  btn-sm          col-sm-1"                                                > ( <input type="checkbox" id="cbx_Filtro_Fecha_Envio_Rango" onchange="cbx_Filtro_Fecha_Envio_Rango(this)"/> Rango ) : </label>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Envio_de">de</label>
+            <input class="btn  btn-sm btn-info col-sm-2"                       id="txt_Filtro_Fec_Envio_de" type="date"/>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Envio_a">a</label>
+            <input class="btn  btn-sm btn-info col-sm-2" style="display:none;" id="txt_Filtro_Fec_Envio_a"  type="date"/>
+            <br/>
+            <label class="lbl  btn-sm          col-sm-1"                      for="txt_Filtro_Fec_Atn">Fecha Atención</label>
+            <label class="lbl  btn-sm          col-sm-1"                                              > ( <input type="checkbox" id="cbx_Filtro_Fecha_Atn_Rango" onchange="cbx_Filtro_Fecha_Atn_Rango(this)"/> Rango ) : </label>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Atn_de">de</label>
+            <input class="btn  btn-sm btn-info col-sm-2"                       id="txt_Filtro_Fec_Atn_de" type="date"/>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Atn_a">a</label>
+            <input class="btn  btn-sm btn-info col-sm-2" style="display:none;" id="txt_Filtro_Fec_Atn_a"  type="date"/>
+            <br/>
+            <label class="lbl  btn-sm          col-sm-1"                      for="txt_Filtro_Fec_Entrega">Fecha Entrega</label>
+            <label class="lbl  btn-sm          col-sm-1"                                                  > ( <input type="checkbox" id="cbx_Filtro_Fecha_Entrega_Rango" onchange="cbx_Filtro_Fecha_Entrega_Rango(this)"/> Rango ) : </label>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Entrega_de">de</label>
+            <input class="btn  btn-sm btn-info col-sm-2"                       id="txt_Filtro_Fec_Entrega_de" type="date"/>
+            <label class="lbl2 btn-sm          col-sm-1" style="display:none;" id="lbl_Filtro_Fec_Entrega_a">a</label>
+            <input class="btn  btn-sm btn-info col-sm-2" style="display:none;" id="txt_Filtro_Fec_Entrega_a"  type="date"/>
             
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_Status">Estatus: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_Status">
-              <option>Todo</option>
-              <option>Canceladas</option>
-              <option>Con Usuario</option>
-              <option>En QA</option>
-              <option>En Proceso</option>
-              <option>Atendidas</option>
-            </select>
-
-            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="txt_Filtro_Fec_Atn">Fecha Atención (<input type="checkbox" style="padding: 0px;" id="cbx_Filtro_Fecha_Atn_Rango" onchange="cbx_Filtro_Fecha_Atn_Rango(this)"/>Rango) : </label>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Atn_de"> de </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px;"                     id="txt_Filtro_Fec_Atn_de" type="date" alt="01/01/2020"/>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Atn_a"> - a </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; display:none;"       id="txt_Filtro_Fec_Atn_a"  type="date" alt="02/01/2020"/>
-            
-            <label  class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="slc_Filtro_En_Tiempo">En tiempo: </label>
-            <select class="btn btn-sm btn-info" style="width: 150px;      padding: 0px;"                     id="slc_Filtro_En_Tiempo">
-              <option>Todo</option>
-              <option>En Tiempo</option>
-              <option>Fuera de Tiempo</option>
-            </select>
-
-            <label class="btn btn-sm"          style="font-weight: bold; padding: 0px; margin-left: 10px;" for="txt_Filtro_Fec_Entrega">Fecha Entrega (<input type="checkbox" style="padding: 0px;" id="cbx_Filtro_Fecha_Entrega_Rango" onchange="cbx_Filtro_Fecha_Entrega_Rango(this)"/>Rango) : </label>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Entrega_de"> de </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px;"                     id="txt_Filtro_Fec_Entrega_de" type="date" alt="01/01/2020"/>
-            <label class="btn btn-sm "         style="                   padding: 0px; display:none;"       id="lbl_Filtro_Fec_Entrega_a"> - a </label>
-            <input class="btn btn-sm btn-info" style="width: 110px;      padding: 0px; display:none;"       id="txt_Filtro_Fec_Entrega_a"  type="date" alt="02/01/2020"/>
-            
-            <button class="btn btn-sm btn-info" style="width: 80px; padding: 0px; margin-left: 10px;" id="btn_Filtro_Buscar" onclick="btn_Fitlro_Buscar_clic(this)">Buscar</button>
+            <button class="btn btn-info" style="width: 100px; padding: 0px; margin-left: 10px;" id="btn_Filtro_Buscar" onclick="btn_Fitlro_Buscar_clic(this)"><i class="fas fa-search" aria-hidden="true"></i>  Buscar</button>
           </div>
         </div>
 
@@ -995,12 +987,14 @@
       var x = document.getElementById("cbx_Filtro_Fecha_Envio_Rango");
       if (x.checked == true)
       { 
+        // $("#br_Fecha_Envio").show();
         $("#lbl_Filtro_Fec_Envio_de").show();
         $("#lbl_Filtro_Fec_Envio_a").show();
         $("#txt_Filtro_Fec_Envio_a").show();
       }
       else 
       {
+        // $("#br_Fecha_Envio").hide();
         $("#lbl_Filtro_Fec_Envio_de").hide();
         $("#lbl_Filtro_Fec_Envio_a").hide();
         $("#txt_Filtro_Fec_Envio_a").hide();
@@ -1011,12 +1005,14 @@
       var x = document.getElementById("cbx_Filtro_Fecha_Atn_Rango");
       if (x.checked == true)
       { 
+        // $("#br_Fecha_Atn").show();
         $("#lbl_Filtro_Fec_Atn_de").show();
         $("#lbl_Filtro_Fec_Atn_a").show();
         $("#txt_Filtro_Fec_Atn_a").show();
       }
       else 
       {
+        // $("#br_Fecha_Atn").hide();
         $("#lbl_Filtro_Fec_Atn_de").hide();
         $("#lbl_Filtro_Fec_Atn_a").hide();
         $("#txt_Filtro_Fec_Atn_a").hide();
@@ -1027,12 +1023,14 @@
       var x = document.getElementById("cbx_Filtro_Fecha_Entrega_Rango");
       if (x.checked == true)
       { 
+        // $("#br_Fecha_Entrega").show();
         $("#lbl_Filtro_Fec_Entrega_de").show();
         $("#lbl_Filtro_Fec_Entrega_a").show();
         $("#txt_Filtro_Fec_Entrega_a").show();
       }
       else 
       {
+        // $("#br_Fecha_Entrega").hide();
         $("#lbl_Filtro_Fec_Entrega_de").hide();
         $("#lbl_Filtro_Fec_Entrega_a").hide();
         $("#txt_Filtro_Fec_Entrega_a").hide();
