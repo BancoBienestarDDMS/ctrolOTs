@@ -38,13 +38,14 @@ function cargar_Anios() {
   }).done( function( data ) {
     var datos = data;
     console.log('vaciamos el select de Anios.');
-    $('#slc_Filtro_Anio').clear();
-    console.log('getAnios done ' + datos.length + ' rows');
+    $('#slc_Filtro_Anio').children().remove().end();
+    $('#slc_Filtro_Anio').append(new Option('Todo', '0'));
+    console.log('obtenemos ' + datos.length + ' rows de getAnios');
     $.each( data, function( key, val ) {
-      console.log('Agregamos el anio: ' + key + ' valor: ' + val);
-      $('#slc_Filtro_Anio').val(val);
+      console.log('Agregamos el anio: ' + key + ' valor: ' + (2000+val));
+      $('#slc_Filtro_Anio').append(`<option value="${key}"> ${val+2000} </option>`); 
     });
-    console.log('listo');
+    console.log('listo anios');
   });
 }
 
@@ -56,9 +57,22 @@ function cargar_cat_Status_OT() {
     format: "json"
   }).done(function( data ) {
     var datos = data;
+    console.log('vaciamos el select de Status OTs.');
+    $('#slc_Filtro_Status').children().remove().end();
+    $('#slc_Filtro_Status').append(new Option('Todo', '0'));
     console.log('getStsOTs done ' + datos.length + ' rows');
+    $.each( data, function( key, val ) {
+      console.log('Agregamos el status: ' + val.id + ' valor: ' + val.nombre);
+      $('#slc_Filtro_Status').append(`<option value="${val.id}"> ${val.nombre} </option>`); 
+    });
+    console.log('listo Status OTs.');
   });
 }
+
+
+
+
+
 
 function cargar_cat_Dir_Adjuntas() {
   console.log("cargamos catálogo de Direcciones Adjuntas");
@@ -68,10 +82,14 @@ function cargar_cat_Dir_Adjuntas() {
     format: "json"
   }).done(function( data ) {
     var datos = data;
+    console.log('vaciamos el select de Status OTs.');
+    $('#slc_Filtro_Status').children().remove().end();
+    $('#slc_Filtro_Status').append(new Option('Todo', '0'));
+    console.log('getStsOTs done ' + datos.length + ' rows');
     console.log('getDAs done ' + datos.length + ' rows');
-    // $.each( data, function( key, val ) {
-    //   console.log('Direccion Adjunta: ' + key + ' id: ' + val.id + ' abrev: ' + val.abrev + ' nombre: ' + val.nombre);
-    // });
+    $.each( data, function( key, val ) {
+      console.log('agregamos la Direccion Adjunta: ' + val.id + ' nombre: ' + val.nombre);
+    });
   });
 }
 
@@ -110,6 +128,12 @@ function cargar_cat_Gerencias() {
     console.log('getGers done ' + datos.length + ' rows');
   });
 }
+
+
+
+
+
+
 
 function cargar_cat_Programas() {
   console.log("cargamos catálogo de Programas");
