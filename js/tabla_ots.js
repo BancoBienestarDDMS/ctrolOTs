@@ -63,7 +63,7 @@ function cargar_cat_Status_OT() {
     console.log('getStsOTs done ' + datos.length + ' rows');
     $.each( data, function( key, val ) {
       console.log('Agregamos el status: ' + val.id + ' valor: ' + val.nombre);
-      $('#slc_Filtro_Status').append(`<option value="${val.id}"> ${val.nombre} </option>`); 
+      $('#slc_Filtro_Status').append(`<option value="${val.id}"> ${val.nombre} </option>`);
     });
     console.log('listo Status OTs.');
   });
@@ -83,19 +83,22 @@ function cargar_cat_Dir_Adjuntas() {
   }).done(function( data ) {
     var datos = data;
     console.log('vaciamos el select de Status OTs.');
-    $('#slc_Filtro_Status').children().remove().end();
-    $('#slc_Filtro_Status').append(new Option('Todo', '0'));
-    console.log('getStsOTs done ' + datos.length + ' rows');
+    $('#slc_Filtro_Area_Solicitante').children().remove().end();
+    $('#slc_Filtro_Area_Solicitante').append(new Option('Todo', '0'));
     console.log('getDAs done ' + datos.length + ' rows');
     $.each( data, function( key, val ) {
       console.log('agregamos la Direccion Adjunta: ' + val.id + ' nombre: ' + val.nombre);
+      $('#slc_Filtro_Area_Solicitante').append(`<option value="${val.id}"> ${val.nombre} </option>`);
+      console.log('buscamos las Direcciones correspondientes a la Dir. Adjunta: ' + val.id);
+      cargar_cat_Direcciones(val.id);
     });
+    console.log('listo Direcciones Adjuntas.');
   });
 }
 
-function cargar_cat_Direcciones() {
+function cargar_cat_Direcciones(idDA) {
   console.log("cargamos catálogo de Direcciones");
-  var ctrl_ots_API_Dirs = "http://172.26.160.167/api_ctrl_ots/rsConsultaOTs/getDirs?";
+  var ctrl_ots_API_Dirs = "http://172.26.160.167/api_ctrl_ots/rsConsultaOTs/getDirs?idDA="+idDA;
   $.getJSON( ctrl_ots_API_Dirs, {
     tagmode: "any",
     format: "json"
